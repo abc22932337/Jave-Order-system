@@ -1,0 +1,386 @@
+package pkg123test;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.LinkedList;
+
+public class Main extends JFrame{
+	int total=0;//宣告價錢的存放變數
+        JLabel lbName = new JLabel("點餐系統 ");	
+        JLabel lb1 = new JLabel("漢堡類:");
+        JLabel lb2 = new JLabel("附餐類:");
+        JLabel lb3 = new JLabel("飲料類:");
+        JButton save1=new JButton("點餐完畢");
+        
+        JLabel lbimage = new JLabel(new ImageIcon(".\\num1.gif"));
+        JLabel lbimage2 = new JLabel(new ImageIcon(".\\num2.gif"));
+        JLabel lbimage3 = new JLabel(new ImageIcon(".\\num3.gif"));
+        JLabel lbimage4 = new JLabel(new ImageIcon(".\\num4.gif"));
+        JLabel lbimage5 = new JLabel(new ImageIcon(".\\num5.gif"));
+        JLabel lbimage6 = new JLabel(new ImageIcon(".\\num6.gif"));
+        JLabel lbimage7 = new JLabel(new ImageIcon(".\\num7.gif"));
+        JLabel lbimage8 = new JLabel(new ImageIcon(".\\num8.gif"));
+        JLabel lbimage9 = new JLabel(new ImageIcon(".\\num9.gif"));
+
+        //建立選項區
+	JCheckBox cbSpe1 = new JCheckBox("牛肉漢堡(110元)"),
+		  cbSpe2 = new JCheckBox("魚堡(95元)"),
+		  cbSpe3 = new JCheckBox("雞肉堡(105元)");
+        
+        JCheckBox cbSpe4 = new JCheckBox("薯條(60元)"),
+		  cbSpe5 = new JCheckBox("雞肉凱薩沙拉(75元)"),
+		  cbSpe6 = new JCheckBox("酥炸腿+薯條(105元)");
+        
+        JCheckBox cbSpe7 = new JCheckBox("可樂(30元)"),
+		  cbSpe8 = new JCheckBox("檸檬紅茶(25元)"),
+		  cbSpe9 = new JCheckBox("蜂蜜綠茶(30元)");
+        
+		  
+
+
+       
+        
+  
+
+        //button的監聽宣告
+        ActionListener al = new ActionListener() {
+		public void actionPerformed(ActionEvent e){
+		if(e.getActionCommand().equals("點餐完畢"))
+                  new Main.nw();       
+            }
+        };
+        
+        
+        String abilityflag = "主餐 : "; 
+        //定義並宣告回應ItemEvent事件的監聽器
+	ItemListener il = new ItemListener(){
+
+		LinkedList<JCheckBox> llSel = new LinkedList<JCheckBox>();
+                
+		public void itemStateChanged(ItemEvent e) {
+
+			JCheckBox cbSource = (JCheckBox) e.getSource();
+                        abilityflag = "主餐 : "; 
+			if(e.getStateChange() == ItemEvent.SELECTED){
+				llSel.add(cbSource);
+                            if(cbSource.getText().equals("牛肉漢堡(110元)"))
+                            {
+                              total +=110; 
+                            }
+
+                            else if(cbSource.getText().equals("魚堡(95元)"))
+                            {
+                              total +=95;
+                            }
+                        
+                            else if(cbSource.getText().equals("雞肉堡(105元)"))
+                            {
+                              total +=105;            
+                            }
+                                
+                        }
+			else if(e.getStateChange() == ItemEvent.DESELECTED){
+				llSel.remove(cbSource);
+                            if(cbSource.getText().equals("牛肉漢堡(110元)"))
+                            {
+                              total-=110; 
+                            }
+                            else if(cbSource.getText().equals("魚堡(95元)"))
+                            {
+                              total-=95;
+                            }
+                            else if(cbSource.getText().equals("雞肉堡(105元)"))
+                            {
+                              total-=105; 
+                            }
+                                       
+                        }       
+			for(JCheckBox elm: llSel)
+				abilityflag=abilityflag+elm.getActionCommand() + "  ";
+		}	
+	};
+        
+        //宣告第二個checkBox的選項與要執行的事件
+        String abilityflag2 = "副餐 : "; 
+        //定義並宣告回應ItemEvent事件的監聽器
+	ItemListener il2 = new ItemListener(){
+
+		LinkedList<JCheckBox> llSel2 = new LinkedList<JCheckBox>();
+                
+		public void itemStateChanged(ItemEvent e) {
+
+			JCheckBox cbSource = (JCheckBox) e.getSource();
+                        abilityflag2 = "副餐 : "; 
+			if(e.getStateChange() == ItemEvent.SELECTED){
+				llSel2.add(cbSource);
+                            if(cbSource.getText().equals("薯條(60元)"))
+                            {
+                              total +=60; 
+                            }
+
+                            else if(cbSource.getText().equals("雞肉凱薩沙拉(75元)"))
+                            {
+                              total +=75;
+                            }
+                        
+                            else if(cbSource.getText().equals("酥炸腿+薯條(105元)"))
+                            {
+                              total +=105;            
+                            }
+                                
+                        }
+			else if(e.getStateChange() == ItemEvent.DESELECTED){
+				llSel2.remove(cbSource);
+                            if(cbSource.getText().equals("薯條(60元)"))
+                            {
+                              total-=60; 
+                            }
+                            else if(cbSource.getText().equals("雞肉凱薩沙拉(75元)"))
+                            {
+                              total-=75;
+                            }
+                            else if(cbSource.getText().equals("酥炸腿+薯條(105元)"))
+                            {
+                              total-=105; 
+                            }
+                                       
+                        }       
+			for(JCheckBox elm: llSel2)
+				abilityflag2=abilityflag2+elm.getActionCommand() + "    ";
+		}	
+	};
+        
+        //宣告第三個checkBox的選項與要執行的事件
+        String abilityflag3 = "飲料 : "; 
+        //定義並宣告回應ItemEvent事件的監聽器
+	ItemListener il3 = new ItemListener(){
+
+		LinkedList<JCheckBox> llSel3 = new LinkedList<JCheckBox>();
+                
+		public void itemStateChanged(ItemEvent e) {
+
+			JCheckBox cbSource = (JCheckBox) e.getSource();
+                        abilityflag3 = "飲料 : "; 
+			if(e.getStateChange() == ItemEvent.SELECTED){
+				llSel3.add(cbSource);
+                            if(cbSource.getText().equals("可樂(30元)"))
+                            {
+                              total +=30; 
+                            }
+
+                            else if(cbSource.getText().equals("檸檬紅茶(25元)"))
+                            {
+                              total +=25;
+                            }
+                        
+                            else if(cbSource.getText().equals("蜂蜜綠茶(30元)"))
+                            {
+                              total +=30;            
+                            }
+                                
+                        }
+			else if(e.getStateChange() == ItemEvent.DESELECTED){
+				llSel3.remove(cbSource);
+                            if(cbSource.getText().equals("可樂(30元)"))
+                            {
+                              total-=30; 
+                            }
+                            else if(cbSource.getText().equals("檸檬紅茶(25元)"))
+                            {
+                              total-=25;
+                            }
+                            else if(cbSource.getText().equals("蜂蜜綠茶(30元)"))
+                            {
+                              total-=30; 
+                            }
+                                       
+                        }       
+			for(JCheckBox elm: llSel3)
+				abilityflag3=abilityflag3+elm.getActionCommand() + "    ";
+		}	
+	};
+        
+        
+        
+        
+        
+        
+        
+	Main(){
+                
+                lb1.setForeground(Color.RED);
+                lb2.setForeground(Color.RED);
+                lb3.setForeground(Color.RED);
+
+
+                //宣告BoxLayout區
+                Box bxShow0=new Box(BoxLayout.Y_AXIS);//第一個
+                bxShow0.add(lbName);
+                bxShow0.add(Box.createVerticalStrut(30));
+                bxShow0.add(lb1);
+                Box bxShow1=new Box(BoxLayout.Y_AXIS);//第二個
+                bxShow1.add(Box.createVerticalStrut(30));
+                bxShow1.add(lb2);
+                Box bxShow2=new Box(BoxLayout.Y_AXIS);//第三個
+                bxShow2.add(Box.createVerticalStrut(30));
+                bxShow2.add(lb3);
+		Box bxShow = new Box(BoxLayout.Y_AXIS);
+                bxShow.add(save1);
+                
+                Box boximage =  new Box(BoxLayout.X_AXIS);
+                boximage.add(lbimage);
+                boximage.add(Box.createHorizontalStrut(10));
+                boximage.add(lbimage2);
+                boximage.add(Box.createHorizontalStrut(10));
+                boximage.add(lbimage3);
+                
+                Box boximage2 = new Box(BoxLayout.X_AXIS);
+                boximage2.add(lbimage4);
+                boximage2.add(Box.createHorizontalStrut(10));
+                boximage2.add(lbimage5);
+                boximage2.add(Box.createHorizontalStrut(10));
+                boximage2.add(lbimage6);
+                
+                Box boximage3 = new Box(BoxLayout.X_AXIS);
+                boximage3.add(lbimage7);
+                boximage3.add(Box.createHorizontalStrut(30));
+                boximage3.add(lbimage8);
+                boximage3.add(Box.createHorizontalStrut(50));
+                boximage3.add(lbimage9);
+                boximage3.add(Box.createHorizontalStrut(50));
+
+
+                
+                
+                save1.addActionListener(al);
+              
+                JPanel jpHAlign = 
+			new JPanel(new FlowLayout(FlowLayout.CENTER,40, 5));
+                JPanel jpHAlign2 = 
+			new JPanel(new FlowLayout(FlowLayout.CENTER,40, 5));
+                JPanel jpHAlign3 = 
+			new JPanel(new FlowLayout(FlowLayout.CENTER,40, 5));
+
+
+		
+                cbSpe1.addItemListener(il); 
+		cbSpe2.addItemListener(il);
+		cbSpe3.addItemListener(il);
+                
+                cbSpe4.addItemListener(il2);
+                cbSpe5.addItemListener(il2);
+                cbSpe6.addItemListener(il2);
+                
+                cbSpe7.addItemListener(il3);
+                cbSpe8.addItemListener(il3);
+                cbSpe9.addItemListener(il3);
+                
+                
+                
+                
+                Box boxSpe = new Box(BoxLayout.X_AXIS); //建立放置三個選項為橫的放
+
+                boxSpe.add(cbSpe1); 
+		boxSpe.add(Box.createHorizontalStrut(5));
+		boxSpe.add(cbSpe2);
+		boxSpe.add(Box.createHorizontalStrut(45));
+		boxSpe.add(cbSpe3);
+                boxSpe.add(Box.createHorizontalStrut(70));
+                
+                Box boxSpe2 = new Box(BoxLayout.X_AXIS);//建立副餐類放置三個選項為橫的放
+                boxSpe2.add(cbSpe4);
+                boxSpe2.add(Box.createHorizontalStrut(35));
+                boxSpe2.add(cbSpe5);
+                boxSpe2.add(cbSpe6);
+                boxSpe2.add(Box.createHorizontalStrut(70));
+                
+                Box boxSpe3 = new Box(BoxLayout.X_AXIS);//建立飲料類放置三個選項為橫的放
+                boxSpe3.add(cbSpe7);
+                boxSpe3.add(Box.createHorizontalStrut(15));
+                boxSpe3.add(cbSpe8);
+                boxSpe3.add(Box.createHorizontalStrut(15));
+                boxSpe3.add(cbSpe9);
+                boxSpe3.add(Box.createHorizontalStrut(70));
+                
+                
+                
+                
+                
+                
+                
+		Container cp = getContentPane(); //取得面版
+
+		cp.setLayout(new FlowLayout(FlowLayout.LEFT)); //設定使用FlowLayout配置
+
+                cp.add(bxShow0);
+                cp.add(jpHAlign);
+                cp.add(boxSpe);
+                cp.add(boximage);
+                cp.add(bxShow1);
+                cp.add(jpHAlign2);
+                cp.add(boxSpe2);
+                cp.add(boximage2);
+                cp.add(bxShow2);
+                cp.add(jpHAlign3);
+                cp.add(boxSpe3);
+                cp.add(boximage3);
+		cp.add(bxShow);
+                
+                
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                setSize(440, 670);
+		setVisible(true);
+	}
+
+class nw extends JFrame{
+ //顯示點的餐點與價錢
+ JLabel  lbText1 = new JLabel("已選擇餐點:"),
+         lbText8 = new JLabel("\n"),
+         lbText3 = new JLabel(abilityflag),
+         lbText6 = new JLabel("\n"),
+         lbText4 = new JLabel(abilityflag2),
+         lbText7 = new JLabel("\n"),
+         lbText5 = new JLabel(abilityflag3),
+         lbText9 = new JLabel("\n"),
+         lbText2 = new JLabel("總價錢："+ total + " 元");
+ JButton exit =  new JButton("離開");
+ 
+ 
+ ActionListener alexit = new ActionListener() {
+		public void actionPerformed(ActionEvent e){
+		if(e.getActionCommand().equals("離開"))
+                  System.exit(0);      
+            }
+        };
+ 
+ 
+ nw(){
+     
+ exit.addActionListener(alexit);
+ Box bxShow = new Box(BoxLayout.Y_AXIS);
+ bxShow.add(lbText1);
+ bxShow.add(lbText8);
+ bxShow.add(lbText3);
+ bxShow.add(lbText6);
+ bxShow.add(lbText4);
+ bxShow.add(lbText7);
+ bxShow.add(lbText5);
+ bxShow.add(lbText9);
+ bxShow.add(lbText2);
+ bxShow.add(Box.createVerticalStrut(40));
+ bxShow.add(exit);
+ 
+ Container cp = getContentPane(); //取得面版
+ cp.add(bxShow);
+ setSize(300, 260);
+ setVisible(true);
+ }
+    
+}        
+
+	public static void main(String args[]) {
+		new Main();
+	}
+}
